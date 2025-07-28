@@ -1,0 +1,239 @@
+
+.header {
+  background: linear-gradient(90deg, #FF99CC, #FFB6D9, #FFC4DD);
+  color: #111;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo-container img {
+  height: 60px;
+  width: auto;
+  mix-blend-mode: multiply;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Fancy underline effect */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #111;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #333;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Button style */
+.logout-btn {
+  background-color: #fff;
+  color: #FF69B4;
+  border: 2px solid #FF69B4;
+  padding: 6px 12px;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #FF69B4;
+  color: white;
+}
+
+/* Hamburger icon */
+.mobile-menu-icon {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #111;
+}
+
+/* Sidebar menu */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 65%;
+  max-width: 250px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255,153,204,0.95), rgba(255,182,217,0.9));
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 999;
+  transition: right 0.4s ease-in-out;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+}
+
+/* Show sidebar */
+.mobile-sidebar.active {
+  right: 0;
+}
+
+.mobile-sidebar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.mobile-logo {
+  height: 50px;
+  margin: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 26px;
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Sidebar nav links */
+.mobile-sidebar .nav-link,
+.mobile-sidebar .logout-btn {
+  margin: 12px 0;
+  text-align: center;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.mobile-sidebar .nav-link:hover {
+  transform: scale(1.05);
+  color: #333;
+}
+
+.mobile-sidebar .logout-btn:hover {
+  background-color: #FF69B4;
+  color: #fff;
+}
+/* Existing styles (your code already provided) */
+/* ... [keep all your existing styles unchanged] ... */
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .nav {
+    display: none; /* Hide desktop nav on tablets and below */
+  }
+
+  .mobile-menu-icon {
+    display: block; /* Show hamburger */
+  }
+
+  .header-wrapper {
+    justify-content: space-between;
+  }
+
+  .logout-btn {
+    display: none; /* Hide logout button on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 8px 16px;
+  }
+
+  .logo-container img {
+    height: 48px;
+  }
+
+  .mobile-sidebar {
+    width: 75%;
+  }
+
+  .mobile-sidebar .nav-link {
+    font-size: 16px;
+  }
+
+  .mobile-sidebar .logout-btn {
+    font-size: 15px;
+    padding: 6px 10px;
+  }
+
+  .mobile-logo {
+    height: 45px;
+  }
+
+  .close-btn {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-sidebar {
+    width: 85%;
+  }
+
+  .mobile-sidebar .nav-link {
+    font-size: 15px;
+  }
+
+  .mobile-sidebar .logout-btn {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+
+  .logo-container img {
+    height: 42px;
+  }
+}
+/* Sidebar menu */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 65%;
+  max-width: 250px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255,153,204,0.95), rgba(255,182,217,0.9));
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 999;
+  transition: right 0.4s ease-in-out;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+}
+
+/* FIXED: Use `.open` instead of `.active` */
+.mobile-sidebar.open {
+  right: 0;
+}

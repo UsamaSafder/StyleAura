@@ -1,0 +1,159 @@
+.footer {
+  background: linear-gradient(90deg, #FF99CC, #FF69B4, #FF1493);
+  color: black;
+  font-family: 'Segoe UI', sans-serif;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Left: Logo + Description */
+.footer-left {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-logo img {
+  height: 60px;
+  mix-blend-mode: multiply;
+}
+
+.footer-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* Social Icons */
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-socials a {
+  color: #fff;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #ffa7c4;
+}
+
+/* Button */
+.back-to-top {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.back-to-top:hover {
+  background-color: #ffa7c4;
+  color: #000;
+  border-color: #ffa7c4;
+}
+
+/* Right Columns */
+.footer-column {
+  flex: 1 1 180px;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #110e0f;
+}
+
+.footer-column p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  background-color: #f9a825;
+  color: #000;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-column {
+    flex: 1 1 100%;
+  }
+
+  .footer-logo img {
+    height: 48px;
+  }
+
+  .footer-description {
+    font-size: 13px;
+  }
+
+  .footer-column h4 {
+    margin-top: 24px;
+  }
+
+  .back-to-top {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-logo img {
+    height: 42px;
+  }
+
+  .footer-description,
+  .footer-column p,
+  .footer-column a {
+    font-size: 13px;
+  }
+
+  .back-to-top {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}

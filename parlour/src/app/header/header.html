@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="header-wrapper">
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Logo" />
+    </div>
+
+    <nav class="nav desktop-nav">
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="#">Services</a>
+      <a class="nav-link" href="#">Booking</a>
+      <a class="nav-link" href="#">About Us</a>
+      <a class="nav-link" href="#">Gallery</a>
+      <a class="nav-link" href="#">Contact</a>
+      <button class="logout-btn">Logout</button>
+    </nav>
+
+    <div class="mobile-menu-icon" (click)="toggleMobileMenu()">&#9776;</div>
+  </div>
+
+  <div class="mobile-sidebar"  [class.open]="mobileMenuOpen">
+    <div class="mobile-sidebar-header">
+      <img src="logo.jpg" alt="Logo" class="mobile-logo" />
+      <span class="close-btn" (click)="toggleMobileMenu()">&#10005;</span>
+    </div>
+    <a class="nav-link" href="#" (click)="toggleMobileMenu()">Home</a>
+    <a class="nav-link" href="#" (click)="toggleMobileMenu()">Services</a>
+    <a class="nav-link" href="#" (click)="toggleMobileMenu()">Booking</a>
+    <a class="nav-link" href="#" (click)="toggleMobileMenu()">About Us</a>
+    <a class="nav-link" href="#" (click)="toggleMobileMenu()">Gallery</a>
+    <a class="nav-link" href="#" (click)="toggleMobileMenu()">Contact</a>
+    <button class="logout-btn" (click)="toggleMobileMenu()">Logout</button>
+  </div>
+</header>
