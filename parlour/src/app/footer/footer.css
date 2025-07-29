@@ -2,9 +2,12 @@
   background: linear-gradient(90deg, #FF99CC, #FF69B4, #FF1493);
   color: black;
   font-family: 'Segoe UI', sans-serif;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+ 
   overflow: hidden;
+    margin-left: -8px;
+  margin-right: -10px;
+  margin-top: -18px;
+  margin-bottom: -30px;
 }
 
 
