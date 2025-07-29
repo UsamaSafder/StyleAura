@@ -9,23 +9,23 @@
         Empowering physicians with advanced multi-modal tools to improve treatment selection and patient outcomes.
       </p>
       <div class="footer-socials">
-        <a href="#"><i class="fab fa-x-twitter"></i></a>
+    
         <a href="#"><i class="fab fa-linkedin-in"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-facebook-f"></i></a>
       </div>
-      <button class="back-to-top">↑ Back to Top</button>
+    <button class="back-to-top" (click)="scrollToTop()">↑ Back to Top</button>
+
     </div>
 
     <!-- Middle Column: Your Navigation Links -->
     <div class="footer-column">
       <h4>Site Map</h4>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Booking</a>
-      <a href="#">Pricing</a>
-      
-      <a href="#">Contact</a>
+      <a routerLink="/">Home</a>
+      <a routerLink="/services">Services</a>
+      <a routerLink="/booking">Booking</a>
+      <a routerLink="/pricing">Pricing</a>
+      <a routerLink="/contact">Contact</a>
     </div>
 
     <!-- Right Column: Your Contact Info -->

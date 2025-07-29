@@ -35,7 +35,7 @@
 }
 
 .footer-description {
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.6;
   color: #ffffff;
 }
@@ -81,7 +81,7 @@
 }
 
 .footer-column h4 {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -90,7 +90,7 @@
   display: block;
   color: #ffffff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 8px;
   transition: color 0.3s;
 }
@@ -100,7 +100,7 @@
 }
 
 .footer-column p {
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 8px;
   color: #ffffff;
 }
@@ -111,7 +111,7 @@
   color: #000;
   text-align: center;
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* RESPONSIVE */
