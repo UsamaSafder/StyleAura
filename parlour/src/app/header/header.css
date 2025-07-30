@@ -4,33 +4,45 @@
   color: #111;
   max-width: 1400px;
   margin: 0 auto;
-  margin-top: -10px; /* Adjusted to overlap with hero section */
+  margin-top: -10px;
   margin-left: -8px;
   margin-right: -10px;
-  /* padding: 10px 20px; */
-  /* border-radius: 12px; */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  top: 0;
+  z-index: 999; /* ensures it stays above other elements */
+  animation: slideDown 1s ease-in-out;
 }
+
 
 .header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  padding: 0.8rem 2rem;
 }
 
+/* Logo Enhancement */
 .logo-container img {
-  height: 60px;
+  height: 80px; /* increased size */
   width: auto;
   mix-blend-mode: multiply;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+
+.logo-container img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+/* Navigation */
 .nav {
   display: flex;
   gap: 2rem;
   align-items: center;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .nav-link {
@@ -38,10 +50,10 @@
   color: #111;
   font-weight: 800;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Fancy underline effect */
+/* Fancy underline with animation */
 .nav-link::after {
   content: "";
   position: absolute;
@@ -50,15 +62,29 @@
   bottom: -3px;
   left: 0;
   background-color: #111;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
 
 .nav-link:hover {
-  color: #333;
+  color: #d63384;
+  transform: translateY(-2px);
+  font-size: 30px;
 }
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* Entrance animation for header */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Button style */
@@ -126,7 +152,7 @@
   position: absolute;
   top: 10px;
   right: 15px;
-  font-size: 26px;
+  font-size: 30px;
   background: transparent;
   border: none;
   color: #000;

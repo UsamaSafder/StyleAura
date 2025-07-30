@@ -1,1 +1,51 @@
-<p>services works!</p>
+<section class="hero">
+  <div class="hero-text">
+    <h1><i class="fas fa-star"></i> Our Premium <br> Services</h1>
+    <p>For beautiful, Be confident</p>
+    <button class="btn" [routerLink]="['/booking']">
+      <i class="fas fa-calendar-check"></i> Book Now
+    </button>
+  </div>
+</section>
+
+<section class="services">
+  <h2><i class="fas fa-spa"></i> Our Services</h2>
+  <div class="services-grid">
+    <div class="service-card" *ngFor="let service of services">
+      <img [src]="service.image" [alt]="service.title" />
+      <p> {{ service.title }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="why-choose">
+  <h2><i class="fas fa-heart"></i> Why Choose Us</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <i class="fas fa-house-user icon"></i>
+      <p>Trusted Services</p>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-star icon"></i>
+      <p>10+ Years Experience</p>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-user-nurse icon"></i>
+      <p>Professional Staff</p>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-calendar-alt icon"></i>
+      <p>Online Booking</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2><i class="fas fa-magic"></i> Book Your Glam Look Today!</h2>
+  <button class="btn" [routerLink]="['/booking']">
+    <i class="fas fa-hand-sparkles"></i> Get Appointment
+  </button>
+</section>
+
+<app-footer></app-footer>
+<router-outlet></router-outlet>

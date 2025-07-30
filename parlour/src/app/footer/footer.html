@@ -1,43 +1,48 @@
+<!-- Updated Footer HTML -->
 <footer class="footer">
   <div class="footer-container">
-    <!-- Left Column: Logo + Description + Socials + Back to Top -->
+    <!-- Left Column -->
     <div class="footer-left">
       <div class="footer-logo">
         <img src="logo.jpg" alt="Logo" />
       </div>
       <p class="footer-description">
+        <i class="fas fa-heartbeat"></i>
         Empowering physicians with advanced multi-modal tools to improve treatment selection and patient outcomes.
       </p>
       <div class="footer-socials">
-    
         <a href="#"><i class="fab fa-linkedin-in"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-facebook-f"></i></a>
       </div>
-    <button class="back-to-top" (click)="scrollToTop()">↑ Back to Top</button>
 
+      <!-- Sticky Back to Top Button -->
+      <button class="back-to-top sticky-back" (click)="scrollToTop()">
+        <i class="fas fa-arrow-up"></i> Back to Top
+      </button>
     </div>
 
-    <!-- Middle Column: Your Navigation Links -->
+    <!-- Middle Column -->
     <div class="footer-column">
-      <h4>Site Map</h4>
-      <a routerLink="/">Home</a>
-      <a routerLink="/services">Services</a>
-      <a routerLink="/booking">Booking</a>
-      <a routerLink="/pricing">Pricing</a>
-      <a routerLink="/contact">Contact</a>
+      <h4><i class="fas fa-map-signs"></i> Site Map</h4>
+      <a routerLink="/"><i class="fas fa-home"></i> Home</a>
+      <a routerLink="/services"><i class="fas fa-cut"></i> Services</a>
+      <a routerLink="/booking"><i class="fas fa-calendar-check"></i> Booking</a>
+      <a routerLink="/about"><i class="fas fa-tags"></i> About Us</a>
+      <a routerLink="/contact"><i class="fas fa-envelope"></i> Contact</a>
     </div>
 
-    <!-- Right Column: Your Contact Info -->
+    <!-- Right Column -->
     <div class="footer-column">
-      <h4>Contact Info</h4>
-      <p>Office Time: 9am – 11pm</p>
-      <p>Email: <a href="mailto:fashion@gmail.com">fashion&#64;gmail.com</a></p>
-      <p>WhatsApp: <a href="https://wa.me/923325883524" target="_blank">+92 332 5883524</a></p>
+      <h4><i class="fas fa-address-book"></i> Contact Info</h4>
+      <p><i class="far fa-clock"></i> Office Time: 9am – 11pm</p>
+      <p><i class="fas fa-envelope"></i> Email: <a href="mailto:fashion@gmail.com">fashion&#64;gmail.com</a></p>
+      <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/923325883524" target="_blank">+92 332 5883524</a></p>
     </div>
   </div>
 
   <div class="footer-bottom">
-   Copyright © 2025, StyleAura. All Rights Reserved.
+    <i class="far fa-copyright"></i>
+    2025, Parlour All Rights Reserved.
   </div>
 </footer>

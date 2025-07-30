@@ -112,11 +112,25 @@ body {
   padding: 0 5rem; /* increased outer padding left/right */
 }
 .service-card {
-  width: 18rem; /* Increased size */
+  width: 18rem;
   text-align: center;
   transition: all 0.3s ease;
   padding: 1rem;
   border-radius: 0.618rem;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0; /* start hidden */
+}
+
+/* Add this at the top or near your existing animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .service-card:hover {
@@ -124,6 +138,16 @@ body {
   border: 3px solid #ff69b4;
   transform: translateY(-5px);
   background-color: #fffafc;
+}
+.btn i {
+  margin-right: 0.5rem;
+}
+
+.services h2 i,
+.gallery h2 i,
+.contact h2 i {
+  margin-right: 0.5rem;
+  color: #d63384;
 }
 
 .service-card img {
