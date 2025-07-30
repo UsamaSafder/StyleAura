@@ -9,7 +9,7 @@ import { BookingComponent } from './booking/booking.component';
 // import { BookingComponent } from './booking/booking';
 import { LoginComponent } from './login/login.component';
 import { SignUp } from './sign-up/sign-up';
-import { Admindashboard } from './admindashboard/admindashboard';
+import { AdminDashboardComponent } from './admindashboard/admindashboard';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -21,6 +21,6 @@ export const routes: Routes = [
     {path: 'booking', component: BookingComponent},
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignUp},
-    {path: 'admindashboard', component: Admindashboard},
+    {path: 'admindashboard', component: AdminDashboardComponent},
     {path: '**', redirectTo: '/home'}
 ];
