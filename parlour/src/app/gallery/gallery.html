@@ -1,11 +1,12 @@
-
-<!-- Gallery Component HTML -->
-<div class="gallery-container">
+<!-- Gallery Component -->
+<div class="gallery-container" [class.dark-theme]="isDarkMode">
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-content">
       <h1 class="hero-title">Our Beautiful Work</h1>
-      <p class="hero-subtitle">Witness the transformations and artistry of our skilled professionals</p>
+      <p class="hero-subtitle">
+        Witness our transformations and artistry at our salon's picturesque gallery
+      </p>
       
       <!-- Search Bar -->
       <div class="search-container">
@@ -14,67 +15,54 @@
           placeholder="Search our gallery..." 
           class="search-input"
           [(ngModel)]="searchTerm"
-          (input)="onSearch()">
-        <button class="search-btn">
+          (input)="onSearchChange()"
+        >
+        <button class="search-btn" (click)="performSearch()">
           <i class="fas fa-search"></i>
         </button>
       </div>
     </div>
+    
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <i class="fas" [class.fa-moon]="!isDarkMode" [class.fa-sun]="isDarkMode"></i>
+    </button>
   </section>
 
-  <!-- Filter Buttons -->
+  <!-- Filter Categories -->
   <section class="filter-section">
-    <div class="filter-buttons">
+    <div class="filter-container">
       <button 
-        class="filter-btn" 
-        [class.active]="activeFilter === 'all'"
-        (click)="filterGallery('all')">
-        All Works
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeFilter === 'bridal'"
-        (click)="filterGallery('bridal')">
-        Bridal Makeup
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeFilter === 'hair'"
-        (click)="filterGallery('hair')">
-        Hair Styling
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeFilter === 'skincare'"
-        (click)="filterGallery('skincare')">
-        Skin Care
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeFilter === 'nailart'"
-        (click)="filterGallery('nailart')">
-        Nail Art
-      </button>
-      <button 
-        class="filter-btn" 
-        [class.active]="activeFilter === 'beforeafter'"
-        (click)="filterGallery('beforeafter')">
-        Before & After
+        *ngFor="let category of categories" 
+        class="filter-btn"
+        [class.active]="activeCategory === category.id"
+        (click)="filterByCategory(category.id)"
+      >
+        {{ category.name }}
       </button>
     </div>
   </section>
 
   <!-- Gallery Grid -->
-  <section class="gallery-grid">
-    <div class="gallery-item" 
-         *ngFor="let item of filteredGallery" 
-         (click)="openModal(item)"
-         [@fadeIn]>
-      <div class="gallery-card">
-        <img [src]="item.image" [alt]="item.title" class="gallery-image">
-        <div class="gallery-overlay">
-          <h3 class="gallery-title">{{ item.title }}</h3>
-          <p class="gallery-category">{{ item.category }}</p>
+  <section class="gallery-section">
+    <div class="gallery-grid">
+      <div 
+        *ngFor="let item of filteredGalleryItems; trackBy: trackByFn" 
+        class="gallery-item"
+        (click)="openModal(item)"
+      >
+        <div class="image-container">
+          <img [src]="item.image" [alt]="item.title" class="gallery-image">
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3 class="item-title">{{ item.title }}</h3>
+              <p class="item-category">{{ item.category }}</p>
+              <button class="view-btn">
+                <i class="fas fa-eye"></i>
+                View Details
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -84,18 +72,22 @@
   <section class="transformations-section">
     <h2 class="section-title">Amazing Transformations</h2>
     <div class="transformations-grid">
-      <div class="transformation-card" *ngFor="let transform of transformations">
+      <div 
+        *ngFor="let transformation of transformations" 
+        class="transformation-card"
+        (click)="openTransformationModal(transformation)"
+      >
         <div class="before-after-container">
           <div class="before-image">
-            <img [src]="transform.before" alt="Before">
+            <img [src]="transformation.beforeImage" alt="Before">
             <span class="label">Before</span>
           </div>
           <div class="after-image">
-            <img [src]="transform.after" alt="After">
+            <img [src]="transformation.afterImage" alt="After">
             <span class="label">After</span>
           </div>
         </div>
-        <h3 class="transformation-title">{{ transform.title }}</h3>
+        <h3 class="transformation-title">{{ transformation.title }}</h3>
       </div>
     </div>
   </section>
@@ -104,39 +96,81 @@
   <section class="testimonials-section">
     <h2 class="section-title">What Our Clients Say</h2>
     <div class="testimonials-container">
-      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+      <div 
+        *ngFor="let testimonial of testimonials; let i = index" 
+        class="testimonial-card"
+        [class.active]="currentTestimonial === i"
+      >
         <div class="testimonial-content">
           <p class="testimonial-text">"{{ testimonial.text }}"</p>
           <div class="client-info">
-            <div class="client-avatar">
-              <img [src]="testimonial.avatar" [alt]="testimonial.name">
-            </div>
+            <img [src]="testimonial.avatar" [alt]="testimonial.name" class="client-avatar">
             <div class="client-details">
               <h4 class="client-name">{{ testimonial.name }}</h4>
-              <div class="client-rating">
-                <i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]"></i>
+              <div class="rating">
+                <i *ngFor="let star of [1,2,3,4,5]" 
+                   class="fas fa-star" 
+                   [class.filled]="star <= testimonial.rating">
+                </i>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+    <!-- Testimonial Navigation -->
+    <div class="testimonial-nav">
+      <button 
+        *ngFor="let testimonial of testimonials; let i = index"
+        class="nav-dot"
+        [class.active]="currentTestimonial === i"
+        (click)="setCurrentTestimonial(i)"
+      ></button>
+    </div>
   </section>
-</div>
 
-<!-- Modal for Image Preview -->
-<div class="modal-overlay" 
-     *ngIf="selectedImage" 
-     (click)="closeModal()"
-     [@modalAnimation]>
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="modal-close" (click)="closeModal()">
-      <i class="fas fa-times"></i>
-    </button>
-    <img [src]="selectedImage.image" [alt]="selectedImage.title" class="modal-image">
-    <div class="modal-info">
-      <h3>{{ selectedImage.title }}</h3>
-      <p>{{ selectedImage.category }}</p>
+  <!-- Modal for Gallery Items -->
+  <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" *ngIf="selectedItem">
+        <img [src]="selectedItem.image" [alt]="selectedItem.title" class="modal-image">
+        <div class="modal-info">
+          <h3 class="modal-title">{{ selectedItem.title }}</h3>
+          <p class="modal-category">{{ selectedItem.category }}</p>
+          <p class="modal-description">{{ selectedItem.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Transformations -->
+  <div class="modal-overlay" *ngIf="showTransformationModal" (click)="closeTransformationModal()">
+    <div class="modal-content transformation-modal" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeTransformationModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" *ngIf="selectedTransformation">
+        <h3 class="modal-title">{{ selectedTransformation.title }}</h3>
+        <div class="comparison-container">
+          <div class="comparison-image">
+            <img [src]="selectedTransformation.beforeImage" alt="Before">
+            <span class="comparison-label">Before</span>
+          </div>
+          <div class="vs-divider">VS</div>
+          <div class="comparison-image">
+            <img [src]="selectedTransformation.afterImage" alt="After">
+            <span class="comparison-label">After</span>
+          </div>
+        </div>
+        <p class="transformation-description">{{ selectedTransformation.description }}</p>
+      </div>
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>
+<router-outlet></router-outlet>

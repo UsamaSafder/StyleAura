@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
-export interface GalleryItem {
+import { FormsModule } from '@angular/forms';
+import { Footer } from '../footer/footer';
+interface GalleryItem {
   id: number;
   title: string;
   category: string;
   image: string;
+  description: string;
 }
 
-export interface Transformation {
+interface Category {
+  id: string;
+  name: string;
+}
+
+interface Transformation {
   id: number;
   title: string;
-  before: string;
-  after: string;
+  beforeImage: string;
+  afterImage: string;
+  description: string;
 }
 
-export interface Testimonial {
+interface Testimonial {
   id: number;
   name: string;
   text: string;
@@ -27,281 +34,319 @@ export interface Testimonial {
 
 @Component({
   selector: 'app-gallery',
-   imports: [CommonModule, FormsModule], // ✅ Add FormsModule here
+  imports: [CommonModule, FormsModule, Footer, RouterOutlet],
   templateUrl: './gallery.html',
-  styleUrls: ['./gallery.css'],
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(30px)' }),
-        animate('0.5s ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ])
-    ]),
-    trigger('modalAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0.8)' }),
-        animate('0.3s ease-out', style({ opacity: 1, transform: 'scale(1)' }))
-      ]),
-      transition(':leave', [
-        animate('0.3s ease-in', style({ opacity: 0, transform: 'scale(0.8)' }))
-      ])
-    ])
-  ]
+  styleUrls: ['./gallery.css']
 })
-export class GalleryComponent implements OnInit {
-  searchTerm: string = '';
-  activeFilter: string = 'all';
-  selectedImage: GalleryItem | null = null;
-
-  // Gallery Items Data
+export class GalleryComponent implements OnInit, OnDestroy {
+  // Theme
+  isDarkMode = false;
+  
+  // Search and Filter
+  searchTerm = '';
+  activeCategory = 'all';
+  
+  // Gallery Data
   galleryItems: GalleryItem[] = [
     {
       id: 1,
       title: 'Royal Bridal Transformation',
       category: 'Bridal Makeup',
-      image: 'assets/images/gallery/bridal-1.jpg'
+      image: 'galleryBridal.jpg',
+      description: 'A stunning bridal makeover featuring traditional elements with a modern twist.'
     },
     {
       id: 2,
       title: 'Glamorous Evening Look',
       category: 'Party Makeup',
-      image: 'assets/images/gallery/party-1.jpg'
+      image: 'galleryParty.jpg',
+      description: 'Perfect evening glamour for special occasions and parties.'
     },
     {
       id: 3,
       title: 'Elegant Hair Styling',
       category: 'Hair Styling',
-      image: 'assets/images/gallery/hair-1.jpg'
+      image: 'hairstyle.jpg',
+      description: 'Sophisticated updo perfect for formal events and weddings.'
     },
     {
       id: 4,
       title: 'Natural Glow Treatment',
       category: 'Skin Care',
-      image: 'assets/images/gallery/skincare-1.jpg'
+      image: 'skin.jpg',
+      description: 'Rejuvenating facial treatment for a natural, healthy glow.'
     },
     {
       id: 5,
       title: 'Artistic Nail Design',
       category: 'Nail Art',
-      image: 'assets/images/gallery/nails-1.jpg'
+      image: 'nail.jpg',
+      description: 'Creative nail art featuring intricate designs and patterns.'
     },
     {
       id: 6,
       title: 'Mehndi Special Look',
       category: 'Traditional Makeup',
-      image: 'assets/images/gallery/mehndi-1.jpg'
+      image: 'mehndi.jpg',
+      description: 'Traditional Pakistani bridal look for mehndi ceremonies.'
     },
     {
       id: 7,
-      title: 'Vintage Waves',
-      category: 'Hair Styling',
-      image: 'assets/images/gallery/hair-2.jpg'
+      title: 'Party Ready Look',
+      category: 'Party Makeup',
+      image: 'party.jpg',
+      description: 'Perfect party makeup for special occasions.'
     },
     {
       id: 8,
-      title: 'Anti-Aging Facial',
-      category: 'Skin Care',
-      image: 'assets/images/gallery/skincare-2.jpg'
-    },
-    {
-      id: 9,
-      title: 'Bold Bridal Look',
+      title: 'Ready to Shine',
       category: 'Bridal Makeup',
-      image: 'assets/images/gallery/bridal-2.jpg'
-    },
-    {
-      id: 10,
-      title: 'Creative Nail Art',
-      category: 'Nail Art',
-      image: 'assets/images/gallery/nails-2.jpg'
-    },
-    {
-      id: 11,
-      title: 'Natural Makeup',
-      category: 'Daily Makeup',
-      image: 'assets/images/gallery/natural-1.jpg'
-    },
-    {
-      id: 12,
-      title: 'Professional Styling',
-      category: 'Hair Styling',
-      image: 'assets/images/gallery/hair-3.jpg'
+      image: 'readytoshine.jpg',
+      description: 'Complete makeover for your special day.'
     }
   ];
 
-  // Transformations Data
+  categories: Category[] = [
+    { id: 'all', name: 'All Works' },
+    { id: 'bridal', name: 'Bridal Makeup' },
+    { id: 'hair', name: 'Hair Styling' },
+    { id: 'skincare', name: 'Skin Care' },
+    { id: 'nails', name: 'Nail Art' },
+    { id: 'traditional', name: 'Traditional' },
+    { id: 'party', name: 'Party Makeup' }
+  ];
+
   transformations: Transformation[] = [
     {
       id: 1,
       title: 'Bridal Makeover',
-      before: 'assets/images/transformations/bridal-before.jpg',
-      after: 'assets/images/transformations/bridal-after.jpg'
+      beforeImage: 'normal.jpg',
+      afterImage: 'ready2.jpg',
+      description: 'Complete bridal transformation featuring traditional Pakistani bridal makeup with modern techniques.'
     },
     {
       id: 2,
-      title: 'Skin Rejuvenation',
-      before: 'assets/images/transformations/skin-before.jpg',
-      after: 'assets/images/transformations/skin-after.jpg'
+      title: 'Party Ready Transformation',
+      beforeImage: 'normal.jpg',
+      afterImage: 'ready2.jpg',
+      description: 'Amazing party makeup transformation for special occasions.'
     },
     {
       id: 3,
-      title: 'Hair Transformation',
-      before: 'assets/images/transformations/hair-before.jpg',
-      after: 'assets/images/transformations/hair-after.jpg'
+      title: 'Complete Makeover',
+      beforeImage: 'normal.jpg',
+      afterImage: 'party.jpg',
+      description: 'Complete makeover including makeup and styling for a fresh new look.'
     }
   ];
 
-  // Testimonials Data
   testimonials: Testimonial[] = [
     {
       id: 1,
       name: 'Ayesha Khan',
-      text: 'Absolutely amazing service! The bridal makeup was beyond my expectations. I felt like a princess on my wedding day!',
-      avatar: 'assets/images/testimonials/ayesha.jpg',
+      text: 'Absolutely amazing service! The bridal makeover was beyond my expectations. I felt like a princess on my wedding day!',
+      avatar: 'bridal.jpg',
       rating: 5
     },
     {
       id: 2,
       name: 'Sara Ahmed',
-      text: 'The hair styling was perfect! Professional service and beautiful results. Highly recommend ParlourWali!',
-      avatar: 'assets/images/testimonials/sara.jpg',
+      text: 'The hair styling was perfect! Professional service and beautiful results. Highly recommend StyleAura!',
+      avatar: 'hairstyle.jpg',
       rating: 5
     },
     {
       id: 3,
       name: 'Fatima Ali',
-      text: 'Best facial treatment in town! My skin has never looked better. The staff is so skilled and caring!',
-      avatar: 'assets/images/testimonials/fatima.jpg',
+      text: 'Best facial treatment in town! My skin has never looked better. The staff is so skilled and caring.',
+      avatar: 'skin.jpg',
       rating: 5
     }
   ];
 
-  filteredGallery: GalleryItem[] = [];
+  // Filtered and display data
+  filteredGalleryItems: GalleryItem[] = [];
+  currentTestimonial = 0;
+  testimonialInterval: any;
+
+  // Modal states
+  showModal = false;
+  showTransformationModal = false;
+  selectedItem: GalleryItem | null = null;
+  selectedTransformation: Transformation | null = null;
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.filteredGallery = [...this.galleryItems];
+    this.filteredGalleryItems = [...this.galleryItems];
+    this.startTestimonialRotation();
+    this.loadThemePreference();
   }
 
-  // Filter gallery by category
-  filterGallery(category: string): void {
-    this.activeFilter = category;
-    
-    if (category === 'all') {
-      this.filteredGallery = [...this.galleryItems];
-    } else {
-      this.filteredGallery = this.galleryItems.filter(item => {
-        switch (category) {
-          case 'bridal':
-            return item.category.toLowerCase().includes('bridal');
-          case 'hair':
-            return item.category.toLowerCase().includes('hair');
-          case 'skincare':
-            return item.category.toLowerCase().includes('skin');
-          case 'nailart':
-            return item.category.toLowerCase().includes('nail');
-          case 'beforeafter':
-            return item.category.toLowerCase().includes('transformation');
-          default:
-            return true;
-        }
+  ngOnDestroy(): void {
+    if (this.testimonialInterval) {
+      clearInterval(this.testimonialInterval);
+    }
+  }
+
+  // Theme Management
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
+    this.saveThemePreference();
+  }
+
+  private loadThemePreference(): void {
+    const savedTheme = localStorage.getItem('styleaura-theme');
+    this.isDarkMode = savedTheme === 'dark';
+  }
+
+  private saveThemePreference(): void {
+    localStorage.setItem('styleaura-theme', this.isDarkMode ? 'dark' : 'light');
+  }
+
+  // Search and Filter Functions
+  onSearchChange(event?: Event): void {
+    this.filterGallery();
+  }
+
+  performSearch(): void {
+    this.filterGallery();
+  }
+
+  filterByCategory(categoryId: string): void {
+    this.activeCategory = categoryId;
+    this.filterGallery();
+  }
+
+  private filterGallery(): void {
+    let filtered = [...this.galleryItems];
+
+    // Filter by category
+    if (this.activeCategory !== 'all') {
+      filtered = filtered.filter(item => {
+        const category = item.category.toLowerCase().replace(/\s+/g, '');
+        return category.includes(this.activeCategory) || 
+               this.activeCategory === 'bridal' && category.includes('bridal') ||
+               this.activeCategory === 'hair' && category.includes('hair') ||
+               this.activeCategory === 'skincare' && category.includes('skin') ||
+               this.activeCategory === 'nails' && category.includes('nail') ||
+               this.activeCategory === 'traditional' && category.includes('traditional') ||
+               this.activeCategory === 'party' && category.includes('party');
       });
     }
 
-    // Apply search filter if there's a search term
-    if (this.searchTerm) {
-      this.applySearchFilter();
-    }
-  }
-
-  // Search functionality
-  onSearch(): void {
-    this.applySearchFilter();
-  }
-
-  private applySearchFilter(): void {
-    const baseItems = this.activeFilter === 'all' 
-      ? this.galleryItems 
-      : this.galleryItems.filter(item => {
-          switch (this.activeFilter) {
-            case 'bridal':
-              return item.category.toLowerCase().includes('bridal');
-            case 'hair':
-              return item.category.toLowerCase().includes('hair');
-            case 'skincare':
-              return item.category.toLowerCase().includes('skin');
-            case 'nailart':
-              return item.category.toLowerCase().includes('nail');
-            case 'beforeafter':
-              return item.category.toLowerCase().includes('transformation');
-            default:
-              return true;
-          }
-        });
-
+    // Filter by search term
     if (this.searchTerm.trim()) {
-      this.filteredGallery = baseItems.filter(item =>
-        item.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        item.category.toLowerCase().includes(this.searchTerm.toLowerCase())
+      const searchLower = this.searchTerm.toLowerCase();
+      filtered = filtered.filter(item =>
+        item.title.toLowerCase().includes(searchLower) ||
+        item.category.toLowerCase().includes(searchLower) ||
+        item.description.toLowerCase().includes(searchLower)
       );
-    } else {
-      this.filteredGallery = baseItems;
     }
+
+    this.filteredGalleryItems = filtered;
   }
 
-  // Modal functionality
+  // Modal Functions
   openModal(item: GalleryItem): void {
-    this.selectedImage = item;
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    this.selectedItem = item;
+    this.showModal = true;
+    document.body.style.overflow = 'hidden';
   }
 
   closeModal(): void {
-    this.selectedImage = null;
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    this.showModal = false;
+    this.selectedItem = null;
+    document.body.style.overflow = 'auto';
   }
 
-  // Handle escape key to close modal
-  onKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Escape' && this.selectedImage) {
-      this.closeModal();
+  openTransformationModal(transformation: Transformation): void {
+    this.selectedTransformation = transformation;
+    this.showTransformationModal = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeTransformationModal(): void {
+    this.showTransformationModal = false;
+    this.selectedTransformation = null;
+    document.body.style.overflow = 'auto';
+  }
+
+  // Testimonial Functions
+  private startTestimonialRotation(): void {
+    this.testimonialInterval = setInterval(() => {
+      this.currentTestimonial = (this.currentTestimonial + 1) % this.testimonials.length;
+    }, 5000);
+  }
+
+  setCurrentTestimonial(index: number): void {
+    this.currentTestimonial = index;
+    // Reset the interval
+    if (this.testimonialInterval) {
+      clearInterval(this.testimonialInterval);
+      this.startTestimonialRotation();
     }
   }
 
-  // Load more functionality (if needed for infinite scroll)
-  loadMoreItems(): void {
-    // Implementation for loading more gallery items
-    // This can be connected to a service that fetches more data
+  // Utility Functions
+  trackByFn(index: number, item: GalleryItem): number {
+    return item.id;
   }
 
-  // Share functionality
-  shareImage(item: GalleryItem): void {
-    if (navigator.share) {
-      navigator.share({
-        title: item.title,
-        text: `Check out this amazing ${item.category} work by StyleAura!`,
-        url: window.location.href
-      }).catch(console.error);
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      this.copyToClipboard(window.location.href);
+  // Sample data for development - replace with actual image paths
+  private initializeSampleImages(): void {
+    // This method can be used to set placeholder images during development
+    const placeholderBase = 'https://picsum.photos';
+    
+    this.galleryItems.forEach((item, index) => {
+      if (!item.image.startsWith('http')) {
+        item.image = `${placeholderBase}/400/350?random=${index + 1}`;
+      }
+    });
+
+    this.transformations.forEach((item, index) => {
+      if (!item.beforeImage.startsWith('http')) {
+        item.beforeImage = `${placeholderBase}/300/200?random=${index + 10}`;
+        item.afterImage = `${placeholderBase}/300/200?random=${index + 20}`;
+      }
+    });
+
+    this.testimonials.forEach((item, index) => {
+      if (!item.avatar.startsWith('http')) {
+        item.avatar = `${placeholderBase}/100/100?random=${index + 30}`;
+      }
+    });
+  }
+
+  // Animation and UI Enhancement Functions
+  onImageLoad(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.style.opacity = '1';
+  }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    // Set a placeholder image if the original fails to load
+    img.src = 'assets/images/placeholder.jpg';
+  }
+
+  // Smooth scroll to section
+  scrollToSection(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
-  private copyToClipboard(text: string): void {
-    navigator.clipboard.writeText(text).then(() => {
-      // You can show a toast notification here
-      console.log('Link copied to clipboard');
-    }).catch(console.error);
+  // Analytics tracking (optional)
+  trackGalleryItemView(item: GalleryItem): void {
+    // Add analytics tracking here if needed
+    console.log(`Gallery item viewed: ${item.title}`);
   }
 
-  // Category mapping for display
-  getCategoryDisplayName(category: string): string {
-    const categoryMap: { [key: string]: string } = {
-      'bridal': 'Bridal Makeup',
-      'hair': 'Hair Styling', 
-      'skincare': 'Skin Care',
-      'nailart': 'Nail Art',
-      'beforeafter': 'Before & After'
-    };
-    return categoryMap[category] || category;
+  trackFilterUsage(category: string): void {
+    // Add analytics tracking here if needed
+    console.log(`Filter used: ${category}`);
   }
 }
