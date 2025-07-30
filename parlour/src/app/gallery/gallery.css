@@ -9,7 +9,7 @@
 
 /* Hero Section */
 .hero-section {
- background-image: url('/serHero.jpg'); /* Adjust path as needed */
+ background-image: url('/galleryHero.jpg'); /* Adjust path as needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
