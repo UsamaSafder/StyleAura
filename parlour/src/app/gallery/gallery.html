@@ -1,1 +1,142 @@
-<p>gallery works!</p>
+
+<!-- Gallery Component HTML -->
+<div class="gallery-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Our Beautiful Work</h1>
+      <p class="hero-subtitle">Witness the transformations and artistry of our skilled professionals</p>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          placeholder="Search our gallery..." 
+          class="search-input"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Buttons -->
+  <section class="filter-section">
+    <div class="filter-buttons">
+      <button 
+        class="filter-btn" 
+        [class.active]="activeFilter === 'all'"
+        (click)="filterGallery('all')">
+        All Works
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeFilter === 'bridal'"
+        (click)="filterGallery('bridal')">
+        Bridal Makeup
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeFilter === 'hair'"
+        (click)="filterGallery('hair')">
+        Hair Styling
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeFilter === 'skincare'"
+        (click)="filterGallery('skincare')">
+        Skin Care
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeFilter === 'nailart'"
+        (click)="filterGallery('nailart')">
+        Nail Art
+      </button>
+      <button 
+        class="filter-btn" 
+        [class.active]="activeFilter === 'beforeafter'"
+        (click)="filterGallery('beforeafter')">
+        Before & After
+      </button>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="gallery-grid">
+    <div class="gallery-item" 
+         *ngFor="let item of filteredGallery" 
+         (click)="openModal(item)"
+         [@fadeIn]>
+      <div class="gallery-card">
+        <img [src]="item.image" [alt]="item.title" class="gallery-image">
+        <div class="gallery-overlay">
+          <h3 class="gallery-title">{{ item.title }}</h3>
+          <p class="gallery-category">{{ item.category }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amazing Transformations Section -->
+  <section class="transformations-section">
+    <h2 class="section-title">Amazing Transformations</h2>
+    <div class="transformations-grid">
+      <div class="transformation-card" *ngFor="let transform of transformations">
+        <div class="before-after-container">
+          <div class="before-image">
+            <img [src]="transform.before" alt="Before">
+            <span class="label">Before</span>
+          </div>
+          <div class="after-image">
+            <img [src]="transform.after" alt="After">
+            <span class="label">After</span>
+          </div>
+        </div>
+        <h3 class="transformation-title">{{ transform.title }}</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials -->
+  <section class="testimonials-section">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="testimonials-container">
+      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+        <div class="testimonial-content">
+          <p class="testimonial-text">"{{ testimonial.text }}"</p>
+          <div class="client-info">
+            <div class="client-avatar">
+              <img [src]="testimonial.avatar" [alt]="testimonial.name">
+            </div>
+            <div class="client-details">
+              <h4 class="client-name">{{ testimonial.name }}</h4>
+              <div class="client-rating">
+                <i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal for Image Preview -->
+<div class="modal-overlay" 
+     *ngIf="selectedImage" 
+     (click)="closeModal()"
+     [@modalAnimation]>
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="modal-close" (click)="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+    <img [src]="selectedImage.image" [alt]="selectedImage.title" class="modal-image">
+    <div class="modal-info">
+      <h3>{{ selectedImage.title }}</h3>
+      <p>{{ selectedImage.category }}</p>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from './home/home';
-import { Gallery } from './gallery/gallery';
+import { GalleryComponent } from './gallery/gallery';
 import { AboutUs } from './about-us/about-us';
 import { Contact } from './contact/contact';
 import { Services } from './services/services';
@@ -11,7 +11,7 @@ import { SignUp } from './sign-up/sign-up';
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'home', component: Home},
-    {path: 'gallery', component: Gallery},
+    {path: 'gallery', component: GalleryComponent},
     {path: 'about', component: AboutUs},
     {path: 'contact', component: Contact},
     {path: 'services', component: Services},
