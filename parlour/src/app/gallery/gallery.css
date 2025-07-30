@@ -9,10 +9,17 @@
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, #ff8fa3 0%, #ffc0cb 100%);
-  padding: 80px 20px;
+ background-image: url('/serHero.jpg'); /* Adjust path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #fff;
   text-align: center;
-  color: white;
 }
 
 .hero-content {
