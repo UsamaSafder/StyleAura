@@ -1,25 +1,23 @@
 <!-- booking-list.component.html -->
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-  <div class="w-100 mx-auto" style="max-width: 1100px;">
-    <h2 class="text-center mb-4">All Bookings</h2>
+<div class="page-wrapper">
+  <div class="booking-container">
+    <h2 class="heading">All Bookings</h2>
 
-    <div *ngIf="loading" class="text-center">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+    <div *ngIf="loading" class="loader">
+      <div class="spinner"></div>
     </div>
 
-    <div *ngIf="error" class="alert alert-danger text-center">
+    <div *ngIf="error" class="error-message">
       {{ error }}
     </div>
 
-    <div *ngIf="!loading && bookings.length === 0" class="alert alert-warning text-center">
+    <div *ngIf="!loading && bookings.length === 0" class="warning-message">
       No bookings found.
     </div>
 
-    <div *ngIf="!loading && bookings.length > 0" class="table-responsive shadow rounded bg-white p-3">
-      <table class="table table-hover table-bordered text-center align-middle">
-        <thead class="table-dark">
+    <div *ngIf="!loading && bookings.length > 0" class="table-wrapper">
+      <table class="booking-table">
+        <thead>
           <tr>
             <th>#ID</th>
             <th>Name</th>
@@ -37,7 +35,7 @@
             <td>{{ booking.date }}</td>
             <td>{{ booking.time }}</td>
             <td>
-              <ul class="list-unstyled mb-0">
+              <ul class="service-list">
                 <li *ngFor="let service of booking.services">{{ service }}</li>
               </ul>
             </td>
