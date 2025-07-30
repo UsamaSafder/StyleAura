@@ -4,9 +4,12 @@ import { Gallery } from './gallery/gallery';
 import { AboutUs } from './about-us/about-us';
 import { Contact } from './contact/contact';
 import { Services } from './services/services';
-import { Booking } from './booking/booking';
-import { Login } from './login/login';
+import { BookingComponent } from './booking/booking.component';
+// Or, if the export is named differently, use the correct name, e.g.:
+// import { BookingComponent } from './booking/booking';
+import { LoginComponent } from './login/login.component';
 import { SignUp } from './sign-up/sign-up';
+import { Admindashboard } from './admindashboard/admindashboard';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -15,8 +18,9 @@ export const routes: Routes = [
     {path: 'about', component: AboutUs},
     {path: 'contact', component: Contact},
     {path: 'services', component: Services},
-    {path: 'booking', component: Booking},
-    {path: 'login', component: Login},
+    {path: 'booking', component: BookingComponent},
+    {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignUp},
+    {path: 'admindashboard', component: Admindashboard},
     {path: '**', redirectTo: '/home'}
 ];
