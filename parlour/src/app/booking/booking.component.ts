@@ -41,7 +41,8 @@ export class BookingComponent implements OnInit {
   customerName: string = '';
   customerPhone: string = '';
   selectedServices: string[] = [];
-
+feedbackMessage: string = '';
+isSuccessMessage: boolean = true;
   monthNames: string[] = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -217,14 +218,24 @@ export class BookingComponent implements OnInit {
 
   this.bookingService.createBooking(bookingData).subscribe({
     next: (response) => {
-      alert('Booking confirmed successfully!');
-      this.resetForm();
-      this.isLoading = false;
+     this.feedbackMessage = 'Booking confirmed successfully!';
+  this.isSuccessMessage = true;
+  this.resetForm();
+  this.isLoading = false;
+
+  setTimeout(() => {
+    this.feedbackMessage = '';
+  }, 5000);
     },
     error: (error) => {
-      console.error('Booking error:', error);
-      alert('Failed to confirm booking. Please try again.');
-      this.isLoading = false;
+     console.error('Booking error:', error);
+  this.feedbackMessage = 'Failed to confirm booking. Please try again.';
+  this.isSuccessMessage = false;
+  this.isLoading = false;
+
+  setTimeout(() => {
+    this.feedbackMessage = '';
+  }, 5000);
     }
   });
 }

@@ -146,6 +146,10 @@
     Confirm Booking
   </button>
 </div>
+<div class="custom-feedback" *ngIf="feedbackMessage" [class.success]="isSuccessMessage" [class.error]="!isSuccessMessage">
+  {{ feedbackMessage }}
+</div>
+
 
                 </div>
             </div>
