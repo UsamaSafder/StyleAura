@@ -44,29 +44,35 @@
   </section>
 
   <!-- Gallery Grid -->
-  <section class="gallery-section">
-    <div class="gallery-grid">
-      <div 
-        *ngFor="let item of filteredGalleryItems; trackBy: trackByFn" 
-        class="gallery-item"
-        (click)="openModal(item)"
-      >
-        <div class="image-container">
-          <img [src]="item.image" [alt]="item.title" class="gallery-image">
-          <div class="overlay">
-            <div class="overlay-content">
-              <h3 class="item-title">{{ item.title }}</h3>
-              <p class="item-category">{{ item.category }}</p>
-              <button class="view-btn">
-                <i class="fas fa-eye"></i>
-                View Details
-              </button>
-            </div>
-          </div>
+<section class="gallery-section">
+ <div 
+  class="gallery-grid" 
+  [ngClass]="{'single-item': filteredGalleryItems.length === 1}"
+>
+  <div 
+    *ngFor="let item of filteredGalleryItems; trackBy: trackByFn" 
+    class="gallery-item"
+    (click)="openModal(item)"
+  >
+    <div class="image-container">
+      <img [src]="item.image" [alt]="item.title" class="gallery-image">
+      <div class="overlay">
+        <div class="overlay-content">
+          <h3 class="item-title">{{ item.title }}</h3>
+          <p class="item-category">{{ item.category }}</p>
+          <button class="view-btn">
+            <i class="fas fa-eye"></i>
+            View Details
+          </button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+
+</section>
+
+
 
   <!-- Amazing Transformations Section -->
   <section class="transformations-section">
