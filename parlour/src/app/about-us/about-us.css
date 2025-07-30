@@ -1,0 +1,517 @@
+/* ------------------ Hero Section ------------------ */
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+   margin-left: -8px;
+  margin-right: -5px;
+}
+
+.hero {
+  background-image: url('/serHero.jpg'); /* Adjust path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #fff;
+  text-align: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* dark overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.hero-heading {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtext {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: #ff1493;
+}
+
+/* ------------------ Intro Section ------------------ */
+/* Intro Section */
+.intro {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(to right, #ffc2fa, #fcb5fc);
+  transition: background 0.5s ease;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.intro:hover {
+  background: linear-gradient(to right, #ffccd5, #ffe4ec);
+}
+
+.intro h1 {
+  font-size: 3rem;
+  color: #c2185b;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.intro h1:hover {
+  transform: scale(1.05);
+  color: #ad1457;
+}
+
+.tagline {
+  font-size: 1.4rem;
+  color: #555;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.tagline:hover {
+  color: #880e4f;
+}
+
+/* Fade-in Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ------------------ About Us Section ------------------ */
+/* About Us Section */
+.about-us {
+  padding: 3rem 2rem;
+  background: linear-gradient(to right, #ffe4ec, #fff0f5);
+  text-align: center;
+  animation: fadeSlideIn 1s ease-in-out;
+}
+
+/* About Box Styling */
+.about-box {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  max-width: 850px;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease-in-out;
+  animation: zoomIn 1s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+.about-box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, #f8bbd0, #fce4ec);
+  opacity: 0.05;
+  transform: rotate(25deg);
+}
+
+.about-box strong {
+  color: #d81b60;
+  font-weight: bold;
+}
+
+.about-box em {
+  color: #6a1b9a;
+  font-style: italic;
+}
+
+.about-box p {
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+.about-box h2{
+    font-size: 3.5rem;
+    color: #c2185b;
+    margin-bottom: 0.5rem;
+}
+
+.about-box h2, .about-box h3 {
+  color: #c2185b;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+
+.about-box:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Hover Effect 1 - Shadow Pulse */
+.about-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(194, 24, 91, 0.2);
+}
+
+/* Hover Effect 2 - Border Glow */
+.about-box:hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(194, 24, 91, 0.3);
+  animation: glowPulse 1.5s infinite;
+  pointer-events: none;
+}
+
+/* Hover Effect 3 - Gradient Overlay */
+.about-box:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(194, 24, 91, 0.1),
+    transparent
+  );
+  animation: slideOverlay 2s linear infinite;
+  pointer-events: none;
+}
+
+/* Hover Effect 4 - Slight Rotate */
+.about-box:hover {
+  transform: scale(1.03) rotateZ(0.5deg);
+}
+
+/* Animations */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    border-color: rgba(194, 24, 91, 0.2);
+  }
+  50% {
+    border-color: rgba(194, 24, 91, 0.4);
+  }
+}
+
+@keyframes slideOverlay {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+
+/* ------------------ Mission & Vision Section ------------------ */
+.mission-vision {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(to bottom right, #ffe0ec, #ffc5d9);
+  text-align: center;
+  animation: fadeInUp 1.2s ease-in-out;
+  border-top: 1px solid #c2185b;
+  border-bottom: 1px solid #c2185b;
+}
+
+.mission-box, .vision-box {
+  background-color: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, background-color 0.3s;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-box:hover,
+.vision-box:hover {
+  transform: scale(1.05);
+  background-color: #fde2ea;
+}
+
+.icon-button {
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.6rem 1.4rem;
+  background-color: #eb528a;
+  border-radius: 2rem;
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.icon-button:hover {
+  background-color: #ad1457;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(216, 27, 96, 0.3);
+}
+
+.mission-icon i,
+.vision-icon i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: #880e4f;
+  vertical-align: middle;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------ Why Choose Us Section ------------------ */
+.why-choose-us {
+  padding: 4rem 2rem;
+  background-color: #ffe4ec;
+  text-align: center;
+}
+
+.why-choose-us h2 {
+  font-size: 2.5rem;
+  color: #b71c5a;
+  margin-bottom: 3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.why-choose-us ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.why-choose-us li {
+  flex: 0 1 calc(33.333% - 1.5rem);
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  color: #444;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+  animation: slideInUp 0.8s ease-in-out forwards;
+  opacity: 0;
+  animation-delay: calc(var(--i) * 0.15s);
+}
+
+.why-choose-us li:hover {
+  transform: translateY(-10px) scale(1.03);
+  background-color: #ffebf1;
+  color: #b71c5a;
+}
+
+.why-choose-us i {
+  color: #e91e63;
+  font-size: 1.5rem;
+  margin-right: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.why-choose-us li:hover i {
+  transform: rotate(10deg) scale(1.2);
+}
+
+/* Animations */
+@keyframes slideInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* ---------------- Tablet (width ≤ 780px) ---------------- */
+@media (max-width: 780px) {
+  .hero {
+    height: 60vh;
+    padding: 2rem 1rem;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .hero-heading {
+    font-size: 2rem;
+  }
+
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
+
+  .about-box {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .about-box h2 {
+    font-size: 2.2rem;
+  }
+
+  .about-box h3 {
+    font-size: 1.5rem;
+  }
+
+  .mission-vision {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .why-choose-us ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .why-choose-us li {
+    font-size: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------------- Mobile (width ≤ 500px) ---------------- */
+@media (max-width: 500px) {
+  .hero {
+    height: auto;
+    padding: 1.5rem 1rem;
+    background-position: center;
+    text-align: center;
+  }
+
+  .hero-heading {
+    font-size: 1.7rem;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .intro h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-box {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .about-box h2 {
+    font-size: 2rem;
+  }
+
+  .about-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .mission-vision {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .icon-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .why-choose-us ul {
+    padding: 0;
+    width: 100%;
+  }
+
+  .why-choose-us li {
+    font-size: 0.95rem;
+  }
+}
