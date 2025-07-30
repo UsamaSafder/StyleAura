@@ -1,0 +1,83 @@
+table {
+  font-size: 14px;
+}
+
+ul {
+  padding-left: 15px;
+}
+/* Modern Table Design */
+.table {
+  border-collapse: separate;
+  border-spacing: 0 0.75rem;
+  background-color: transparent;
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: white;
+  border: none;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.table tbody tr {
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table tbody tr:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+}
+
+.table tbody td ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.table tbody td ul li::before {
+  content: "• ";
+  color: #007bff;
+  font-weight: bold;
+}
+
+.container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* booking-list.component.css */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
