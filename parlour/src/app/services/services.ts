@@ -11,8 +11,8 @@ import { NgFor } from '@angular/common';
 })
 export class Services {
    services = [
-    { title: 'Party Makeup', image: 'party.jpg' },
-    { title: 'Bridal Makeup', image: 'bridal.jpg' },
+    { title: 'Party Makeup', image: 'party-makeup.jpg' },
+    { title: 'Bridal Makeup', image: 'bridal2.jpg' },
     { title: 'Manicure Pedicure', image: 'manicure.jpg' },
     { title: 'Hair Cut', image: 'cut.jpg' },
     { title: 'Mehndi Art', image: 'mehndi.jpg' },

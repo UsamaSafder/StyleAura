@@ -10,11 +10,14 @@ body {
     background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
     min-height: 100vh;
     padding: 20px 0;
+     overflow-x: hidden;
 }
 
 .booking-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    margin-left: -8px;  /* Match header margin */
+    margin-right: -10px; /* Match header margin */
 }
 
 .booking-card {
@@ -60,7 +63,11 @@ body {
 
 /* Calendar Styles */
 .calendar-container {
+    width: 100%;
     max-width: 100%;
+    overflow-x: auto;
+    padding: 0 8px;
+    box-sizing: border-box;
 }
 
 .calendar-header {
@@ -298,6 +305,16 @@ body {
     
     .section-container {
         padding: 15px;
+    }
+}
+@media (max-width: 480px) {
+    .calendar-grid {
+        gap: 4px;
+    }
+
+    .calendar-day {
+        min-height: 38px;
+        font-size: 12px;
     }
 }
 
