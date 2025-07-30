@@ -1,6 +1,6 @@
 
 .header {
-  background: linear-gradient(90deg, #FF99CC, #FFB6D9, #FFC4DD);
+  background: linear-gradient(90deg, #fabbdb, #ff4fa4, #FFC4DD);
   color: #111;
   max-width: 1400px;
   margin: 0 auto;
@@ -12,6 +12,7 @@
   top: 0;
   z-index: 999; /* ensures it stays above other elements */
   animation: slideDown 1s ease-in-out;
+  height: 80px; /* fixed height for consistency */
 }
 
 
@@ -25,7 +26,7 @@
 
 /* Logo Enhancement */
 .logo-container img {
-  height: 80px; /* increased size */
+  height: 60px; /* increased size */
   width: auto;
   mix-blend-mode: multiply;
   transition: transform 0.3s ease, filter 0.3s ease;

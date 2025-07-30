@@ -1,0 +1,157 @@
+<div class="container-fluid booking-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="booking-card">
+                    <!-- Header Section -->
+                    <div class="booking-header text-center">
+                        <h2 class="brand-title">ParlourWali</h2>
+                        <p class="booking-subtitle">Secure your spot now — beauty appointments fill up fast!</p>
+                    </div>
+
+                    <!-- Date Selection -->
+<div class="section-container">
+  <h4 class="section-title">Select Date</h4>
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button type="button" class="btn-nav" (click)="previousMonth()">&lt;</button>
+      <h5>{{ getCurrentMonthName() }}</h5>
+      <button type="button" class="btn-nav" (click)="nextMonth()">&gt;</button>
+    </div>
+    <div class="calendar-grid">
+      <div 
+        *ngFor="let day of calendarDays" 
+        class="calendar-cell"
+        [ngClass]="{
+          'header': day.isHeader,
+          'disabled': day.isPastDate || !day.isCurrentMonth,
+          'selected': day.date === selectedDate
+        }"
+        (click)="selectDate(day)">
+        {{ day.day }}
+      </div>
+    </div>
+  </div>
+</div>
+
+                   <!-- Time Selection -->
+<div class="section-container">
+  <h4 class="section-title">Choose Time</h4>
+  <div class="time-slots-container row">
+    <div class="col-md-6">
+      <div
+        *ngFor="let time of timeSlotsLeft"
+        class="time-slot"
+        [ngClass]="{ 'selected': selectedTime === time }"
+        (click)="selectTime(time)"
+      >
+        {{ time }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div
+        *ngFor="let time of timeSlotsRight"
+        class="time-slot"
+        [ngClass]="{ 'selected': selectedTime === time }"
+        (click)="selectTime(time)"
+      >
+        {{ time }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                    <!-- Customer Information -->
+                    <div class="section-container">
+                        <h4 class="section-title">Enter your Info</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Name:</label>
+                                    <input
+  type="text"
+  class="form-control custom-input"
+  id="customerName"
+  [(ngModel)]="customerName"
+  placeholder="Enter your name"
+  name="customerName"
+/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Phone:</label>
+                                    <input
+  type="tel"
+  class="form-control custom-input"
+  id="customerPhone"
+  [(ngModel)]="customerPhone"
+  placeholder="Enter your phone"
+  name="customerPhone"
+/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <!-- Services Selection -->
+<div class="section-container">
+  <h4 class="section-title">Select Services</h4>
+  <div class="services-container">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let service of servicesListLeft">
+        <div class="form-check service-item">
+          <input 
+            type="checkbox" 
+            class="form-check-input"
+            [id]="service.id"
+            [value]="service.name"
+            [(ngModel)]="service.selected"
+            name="services"
+          />
+          <label class="form-check-label" [for]="service.id">
+            {{ service.name }}
+          </label>
+        </div>
+      </div>
+
+      <div class="col-md-6" *ngFor="let service of servicesListRight">
+        <div class="form-check service-item">
+          <input 
+            type="checkbox" 
+            class="form-check-input"
+            [id]="service.id"
+            [value]="service.name"
+            [(ngModel)]="service.selected"
+            name="services"
+          />
+          <label class="form-check-label" [for]="service.id">
+            {{ service.name }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                   <!-- Confirm Booking Button -->
+<div class="text-center">
+  <button
+    type="button"
+    class="btn confirm-btn"
+    id="confirmBooking"
+    (click)="confirmBooking()"
+  >
+    Confirm Booking
+  </button>
+</div>
+<div class="custom-feedback" *ngIf="feedbackMessage" [class.success]="isSuccessMessage" [class.error]="!isSuccessMessage">
+  {{ feedbackMessage }}
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
