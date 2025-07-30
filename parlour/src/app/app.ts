@@ -3,10 +3,10 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { NgIf } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Header,Footer,NgIf],
+  imports: [RouterOutlet,Header,Footer,NgIf, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
