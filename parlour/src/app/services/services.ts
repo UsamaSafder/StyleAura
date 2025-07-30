@@ -23,8 +23,8 @@ export class Services {
     { title: 'Nail Art', image: 'nail.jpg' },
     { title: 'Hair Styling', image: 'hairstyle.jpg' },
     { title: 'Body Massage', image: 'message.jpg' },
-    { title: 'Skin Polish', image: 'bridal.jpg' },
-    { title: 'Makeover', image: 'hairstyle.jpg' },
-    { title: 'Face Bleach', image: 'bridal.jpg' },
+    { title: 'Skin Polish', image: 'polish.jpg' },
+    { title: 'Makeover', image: 'makeover.jpg' },
+    { title: 'Face Bleach', image: 'bleach.jpg' },
   ];
 }
