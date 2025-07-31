@@ -111,15 +111,60 @@ body {
   align-items: center;
   padding: 0 5rem; /* increased outer padding left/right */
 }
+/* KEYFRAMES */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rotateIn {
+  0% { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+  100% { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+
+/* BASE CARD STYLING */
 .service-card {
   width: 18rem;
   text-align: center;
   transition: all 0.3s ease;
   padding: 1rem;
   border-radius: 0.618rem;
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0; /* start hidden */
+  opacity: 0; /* Start hidden */
+  animation-fill-mode: forwards;
+  will-change: opacity, transform;
 }
+
+/* CSS-ONLY "SCROLL-DOWN STYLE" EFFECT BY DELAYS */
+
+/* Apply different animations */
+.service-card:nth-child(4n+1) {
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+.service-card:nth-child(4n+2) {
+  animation: fadeInLeft 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
+.service-card:nth-child(4n+3) {
+  animation: zoomIn 0.8s ease forwards;
+  animation-delay: 0.6s;
+}
+.service-card:nth-child(4n+4) {
+  animation: rotateIn 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+
 
 /* Add this at the top or near your existing animations */
 @keyframes fadeInUp {
@@ -173,6 +218,7 @@ body {
 .service-card p:hover {
   color: #ff4081;
 
+  
 }
 
 /* Gallery Section */
@@ -195,19 +241,65 @@ body {
   gap: 3rem;
   flex-wrap: wrap;
 }
-
-.gallery-card {
-  text-align: center;
-  transition: all 0.3s ease;
-  padding: 1rem;
-  border-radius: 1rem;
+/* 1. Keyframes */
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeInLeft {
+  0%   { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  0%   { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+  0%   { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rotateIn {
+  0%   { opacity: 0; transform: rotate(-15deg) scale(0.9); }
+  100% { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+.gallery-card {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+}
+
+/* 3. Assign animations via nth-child */
+.gallery-card:nth-child(5n + 1) {
+  animation-name: fadeInUp;
+  animation-delay: 0.2s;
+}
+.gallery-card:nth-child(5n + 2) {
+  animation-name: fadeInLeft;
+  animation-delay: 0.4s;
+}
+.gallery-card:nth-child(5n + 3) {
+  animation-name: fadeInRight;
+  animation-delay: 0.6s;
+}
+.gallery-card:nth-child(5n + 4) {
+  animation-name: zoomIn;
+  animation-delay: 0.8s;
+}
+.gallery-card:nth-child(5n + 5) {
+  animation-name: rotateIn;
+  animation-delay: 1s;
+}
 .gallery-card:hover {
   background-color: #fff0f5;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transform: translateY(-5px);
   border: 2px solid #ff69b4;
+  border-radius: 50%;
 }
 
 .gallery-card img {
