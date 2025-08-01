@@ -90,7 +90,7 @@ body {
 
 /* Services Section */
 .services {
-  background: linear-gradient(to right, #ffe0ec, #ffc1d3);
+  background: linear-gradient(to right, #ffe0ec, #ff6f98);
   padding: 2.618rem 1.618rem;
 }
 
@@ -224,7 +224,7 @@ body {
 /* Gallery Section */
 /* Gallery Section */
 .gallery {
-  background: linear-gradient(to right, #ffd8e4, #f9b5c4);
+  background: linear-gradient(to right, #ff739d, #ffb8c8);
   padding: 3rem 2rem;
   text-align: center;
 }
